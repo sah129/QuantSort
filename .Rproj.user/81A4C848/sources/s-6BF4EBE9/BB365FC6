@@ -1,0 +1,24 @@
+{
+    "id": "BB365FC6",
+    "path": "~/GitHub/QuantSort/app.R",
+    "project_path": "app.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1598401436760.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "cursorPosition": "84,14",
+        "scrollLine": "58"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1598413790,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598413790335,
+    "read_only": false,
+    "read_only_alternatives": []
+}

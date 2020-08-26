@@ -1,0 +1,2 @@
+"0","dm<-t(dfmpi)"
+"0","write.table(dm, ""samp3.csv"", sep = "","", row.names = FALSE, col.names = FALSE)"

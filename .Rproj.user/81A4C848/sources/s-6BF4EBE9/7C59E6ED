@@ -1,0 +1,24 @@
+{
+    "id": "7C59E6ED",
+    "path": "~/GitHub/QuantSort/sort.R",
+    "project_path": "sort.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1598403480482.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "cursorPosition": "43,3",
+        "scrollLine": "8"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1598413735,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598413735247,
+    "read_only": false,
+    "read_only_alternatives": []
+}

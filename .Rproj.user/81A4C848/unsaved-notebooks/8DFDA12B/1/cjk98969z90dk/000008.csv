@@ -1,0 +1,2 @@
+"0","df[] <- lapply(df, function(x) as.numeric(as.character(x)))"
+"0","df"

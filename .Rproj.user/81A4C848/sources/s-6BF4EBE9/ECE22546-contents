@@ -1,0 +1,181 @@
+
+```{r}
+require(ggplot2)
+require(reshape2)
+require(Hmisc)
+```
+
+
+```{r setup, include=FALSE}
+source('src/functions.R')
+source('src/Main.R')
+datasetpath <- "Datasets/samp"
+
+```
+
+
+```{r, warning = FALSE}
+
+start <- Sys.time()
+res <- pipeline(datasetpath, testing=FALSE, gui=FALSE, progress=NULL, interactive = FALSE, 4, gfp_channel, 100)
+end = Sys.time()
+
+print(paste0("Pipeline completed.  Processed ", length(res), " images in ", (end-start), " minutes."))
+
+
+```
+
+```{r}
+
+name = "2020-08-14 FYVE (EEA1) GFP GPI"
+groups = list("9ArrD FYVE 0",
+              "9ArrD FYVE GPI_",
+              "BY4741 FYVE 0",
+              "BY4741 FYVE GPI_",
+              "ldb19D FYVE 0",
+              "ldb19D FYVE GPI_")
+sort_data(res, groups, name)
+```
+
+
+```{r}
+
+grouped_path = paste0("FinalOutput/Aggregated Spreadsheets/", name, "_pm_vac_ratio_grouped.csv")
+df<-read.csv(grouped_path, check.names = FALSE)
+df
+
+```
+
+```{r}
+res_graph <- ggplot(data = melt(df), aes(x = variable, y = value))+
+  geom_dotplot(binaxis="y", stackdir = "center", stackratio = 0.5, binwidth=0.01, alpha=0.5, aes(color=variable), dotsize = 1.5) + 
+  xlab("\nGroup") + 
+  ylab("PM/vac ratio") + 
+  ggtitle(paste0(name, " PM/vac ratio")) +
+  stat_summary(fun.data=mean_sdl, fun.args = list(mult=1), 
+        geom="errorbar", color="black", width=0.5) +
+  stat_summary(fun.y="mean", geom="point", color="black") +scale_x_discrete() + 
+  theme(legend.position = "none",axis.text.x=element_text(angle = -45, hjust = 0))
+
+
+res_graph
+ggsave(paste0("graphs/",name," Result Graph.png"), res_graph, device= "png", limitsize = FALSE)
+  
+```
+
+```{r}
+melt(df)
+```
+
+
+```{r}
+#groups = list("9ArrD 316", "9ArrD Aiy1", "9ArrD Aly2", "9ArrD Csr2", "9ArrD Ecm21", "9ArrD Ldb19", "9ArrD Rod1", "9ArrD Rog3", "9ArrD Ylr392c", "9ArrDYgr068c")
+#groups = list("9Arr-del","aly1-del_415", "aly1-del_aly2-del", "aly2-del_415","BY4741") #Figure 2C 
+#groups = list("Bul1-del")
+#groups =  list("Aly1delAly2del", "Apl1del", "Apl3del", "BY4741", "End3del", "Vrp1del")
+
+#groups = list("Bul1-del+Bul2-del","Bul2-del_415", "Bul1-del_415") # Figure 2C Bul Data
+#groups = list("aly1-del_aly2-del", "aly2-del", "BY4741")
+#groups = list("9ArrD 316", "9ArrD Aiy1", "9ArrD Aly2", "9ArrD Csr2", "9ArrD Ecm21", "9ArrD Ldb19", "9ArrD Rod1", "9ArrD Rog3", "9ArrD Ylr392c", "9ArrDYgr068c")
+
+#groups = list("Aly1delAly2del", "Apl1del", "Apl3del", "BY4741", "Cnb1del", "End3del", "Vrp1del") #Figure 5C
+
+#groups = list("DMSO_50uMGPI_120min", "LatA_50uMGPI_120min", "DMSO_NoGPI", "LatA_NoGPI")  #Figure 5E
+
+#groups = list("Time0", "Time60", "Time120")
+
+#groups = list("Aly1Aly2del_Git1_Aly1_", "Aly1Aly2del_Git1_pRS316_Run2", "BY4741_Git1_pRS316") #Figure 6C Aly1 or Aly2 or 7C
+
+#groups = list("9Arr-del_415Git1", "aly1-del_415Git1", "aly1-del_aly2-del_415Git1", "aly2-del_415Git1", "Bul1-del_415Git1", "Bul1-del+Bul2-del_415Git1", "Bul2-del_415Git1", "BY4741(2)_415Git1", "BY4741_415Git1")
+
+
+#groups = list("Aly1Aly2del_Git1_Aly1-5A","Aly1Aly2del_Git1_Aly1-5E","Aly1Aly2del_Git1_Aly1-AAAAAA","Aly1Aly2del_Git1_Aly1-PILKIN", "Aly1Aly2del_Git1_Aly1-PVIVIT")
+
+#groups = list("9Arr-del_415", "aly1-del_415", "aly1-del_aly2-del_415", "aly2-del_415", "Bul1-del_415", "Bul1-del+Bul2-del_415", "Bul2-del_415", "BY4741(2)", "BY4741_415")
+
+#groups = list("BY4741 PLC Delta 00", "aly1aly2D PLC Delta CMAC", "aly1D PLC Delta CMAC", "aly1D PLC Delta GPI CMAC","aly1Daly2D PLC Delta GPI CMAC", "aly2D PLC Delta CMAC", "aly2D PLC Delta GPI CMAC","By4741 PLC Delta GPI CMAC")
+```
+
+
+
+
+```{r}
+r <- res[[2]]
+```
+
+
+```{r}
+get_display_img(df = r$df,
+                membranes = r$membranes, 
+                col_membranes = 'white', 
+                vacuoles = r$vacuoles, 
+                col_vacuoles ='yellow', 
+                removed = r$removed,
+                closed_vacuoles = TRUE, 
+                img = r$channels$gfp, 
+                showRemoved = FALSE, 
+                showMemLabels = TRUE, 
+                showVacLabels = TRUE)
+```
+
+
+
+
+
+##############################################################3
+
+
+
+```{r}
+get_image_names <- function(res)
+{
+  image_names = vector(mode = "list",length = length(res))
+  for(i in 1:length(res))
+  {
+    image_names[i] <- res[[i]]$filename
+  }
+  return(image_names)
+}
+```
+
+
+
+
+```{r}
+get_max_cells <- function(res)
+{
+  max = -1
+  for(i in 1:length(res))
+  {
+    if( max < nrow(res[[i]]$df["cell_mpi"]))
+      max = nrow(res[[i]]$df["cell_mpi"])
+  }
+  return(max)
+}
+
+```
+
+
+```{r}
+max_cells <- get_max_cells(res)
+
+```
+
+```{r}
+create_dummy_row <- function(row_text, m)
+{
+  df <- data.frame(Image = row_text)
+  ids <- vector("list", m)
+  for(j in 1:m)
+  {
+   x <- data.frame(NA)
+    names(x) <- j
+    ids[[j]]<- x
+  }
+  df <- cbind(df, ids)
+  df
+}
+```
+
+
+

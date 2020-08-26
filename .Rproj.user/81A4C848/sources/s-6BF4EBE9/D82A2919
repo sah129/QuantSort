@@ -1,0 +1,25 @@
+{
+    "id": "D82A2919",
+    "path": "~/GitHub/QuantSort/functions.R",
+    "project_path": "functions.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1598401457848.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "68,13",
+        "scrollLine": "0"
+    },
+    "folds": "1|1|5|0|\n9|1|47|0|\n",
+    "lastKnownWriteTime": 1598414753,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598414753095,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,7 @@
+"0","df<-beforemelt"
+"0","rownames(df) <- c()"
+"0","colnames(df) <- df[1,]"
+"0","df<-df[-1,]"
+"0",""
+"0","df<-as.data.frame(df)"
+"0","df"

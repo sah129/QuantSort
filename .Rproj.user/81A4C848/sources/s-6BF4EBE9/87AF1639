@@ -1,0 +1,32 @@
+{
+    "id": "87AF1639",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1598409761402.0,
+    "source_on_save": false,
+    "relative_order": 6,
+    "properties": {
+        "expression": "dfgrouped",
+        "caption": "dfgrouped",
+        "totalObservations": "15",
+        "displayedObservations": "15",
+        "variables": "2",
+        "cacheKey": "58F1A4C3",
+        "object": "dfgrouped",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=dfgrouped&cache_key=58F1A4C3&max_cols=50",
+        "preview": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 3976785546167280225,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1598409761402,
+    "read_only": false,
+    "read_only_alternatives": []
+}
