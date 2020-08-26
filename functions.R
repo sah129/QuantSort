@@ -15,7 +15,7 @@ format_groups <- function(group_list)
   
   group_list <- lapply(group_list, function(g){str_trim(g)})
   
-  
+  group_list <- unlist(group_list)
   return(group_list)
 }
 
@@ -29,8 +29,8 @@ sort_table <- function(data, groups)
   groups <- format_groups(groups)
  
   
-  #inputgroups <<- groups
-  #print(groups)
+  inputgroups <<- groups
+  print(groups)
   
   for(group in groups)
   {
@@ -47,11 +47,14 @@ sort_table <- function(data, groups)
   {
     b<-b[1]
   }
-  if(length(groups) == 2)
+  else if(length(groups) == 2)
   {
     b<-c(b[1], b[2])
   }
-  
+  else
+  {
+    b<-b[1:length(groups)]
+  }
   res<-datatable(data, options = list(dom = 'tpl', pageLength = 15)) %>% 
     formatStyle('Group',
                 target = 'row',

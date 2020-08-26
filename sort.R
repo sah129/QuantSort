@@ -17,7 +17,8 @@ fill_df <- function(filelist, df, category)
 group_types <- function(df, groups)
 {
   #completed <- c()
-
+  
+  
   df_new = data.frame(Image="df new placeholder") 
   
   aggregated = vector("list", nrow(df))
@@ -63,6 +64,9 @@ sort_data <- function(res, groups)
   df_pm_mpi <- data.frame(Image = character(),stringsAsFactors=FALSE)
   df_vac_mpi <- data.frame(Image = character(),stringsAsFactors=FALSE)
   df_pm_vac_ratio <- data.frame(Image = character(),stringsAsFactors=FALSE)
+  
+  
+  
   
   df_pm_mpi <- fill_df(res,df_pm_mpi, "cell_mpi")
   df_vac_mpi <- fill_df(res,df_vac_mpi, "vac_mpi")
