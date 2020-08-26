@@ -53,7 +53,7 @@ sort_table <- function(data, groups)
     b<-c(b[1], b[2])
   }
   
-  res<-datatable(data, options = list(dom = 't')) %>% 
+  res<-datatable(data, options = list(dom = 'tpl', pageLength = 15)) %>% 
     formatStyle('Group',
                 target = 'row',
                 backgroundColor = styleEqual(groups, b))

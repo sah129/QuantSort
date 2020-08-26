@@ -1,6 +1,0 @@
-"0","files <- data.frame(files = c(""Type A 1"", ""Type A 2"", ""Type B 1"", ""Type B 2"", ""Type C""))"
-"0","names(files) <- ""Files"""
-"0",""
-"0",""
-"0","files[""Group""] = """""
-"0","files"

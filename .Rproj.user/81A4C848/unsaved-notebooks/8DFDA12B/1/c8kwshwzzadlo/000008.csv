@@ -1,4 +1,0 @@
-"0","df <- read.csv(""sorted.csv"", check.names = FALSE)"
-"0","melt(df)"
-"2","No id variables; using all as measure variables
-"

@@ -1,0 +1,12 @@
+name: QuantSort
+title: QuantSort
+username:
+account: odonnelllab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2708751
+bundleId: 3558510
+url: https://odonnelllab.shinyapps.io/QuantSort/
+when: 1598420908.67502
+asMultiple: FALSE
+asStatic: FALSE
