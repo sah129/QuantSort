@@ -5,6 +5,19 @@ get_table <- function(data)
   return(data)
 }
 
+format_groups <- function(group_list)
+{
+  group_list <- str_replace(group_list, "\\n", "")
+  
+  group_list <- strsplit(group_list, ",")
+
+  group_list <- unlist(group_list)
+  
+  group_list <- lapply(group_list, function(g){str_trim(g)})
+  
+  
+  return(group_list)
+}
 
 sort_table <- function(data, groups)
 {
@@ -13,11 +26,11 @@ sort_table <- function(data, groups)
   names(data) <- "Files"
   data["Group"] = ""
   
-  groups <- strsplit(groups, ",")
-  groups <- unlist(groups)
+  groups <- format_groups(groups)
+ 
   
-  inputgroups <<- groups
-  print(groups)
+  #inputgroups <<- groups
+  #print(groups)
   
   for(group in groups)
   {
@@ -51,8 +64,7 @@ sort_table <- function(data, groups)
 get_graph <- function(res, groups, title)
 {
   
-  groups <- strsplit(groups, ",")
-  groups <- unlist(groups)
+  groups <- format_groups(groups)
   
   
   

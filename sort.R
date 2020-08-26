@@ -16,7 +16,7 @@ fill_df <- function(filelist, df, category)
 # Group individual experiment types, aggregate, and output
 group_types <- function(df, groups)
 {
-  completed <- c()
+  #completed <- c()
 
   df_new = data.frame(Image="df new placeholder") 
   
@@ -27,13 +27,13 @@ group_types <- function(df, groups)
     rows = which(grepl(group, df[["Image"]], fixed = TRUE))
 
     
-    completed <- c(completed, rows)
+    #completed <- c(completed, rows)
     
     for(row in rows)
     {
       
       df_row <- cbind(df_row,df[row,])
-      df[row, "Image"] <- "used"
+     # df[row, "Image"] <- "used"
       }
     df_row <- df_row[, !(colnames(df_row) %in% c("Image"))]
     df_row <- df_row[ , colSums(is.na(df_row)) == 0]
@@ -46,20 +46,18 @@ group_types <- function(df, groups)
   
  # completedtest<<-completed
   
-  if(all(completed == test))
-    print("SORT SUCCESSFUL")
-  else
-    print("ERROR SORTING")
+  #if(all(completed == test))
+  #  print("SORT SUCCESSFUL")
+  #else
+   # print("ERROR SORTING")
   return(df_new)
 }
 
 # Sort all data from computed images.  Aggregate, output
 sort_data <- function(res, groups)
 {
-  test <<- c(1:nrow(df))
-  
-  groups <- strsplit(groups, ",")
-  groups <- unlist(groups)
+
+  groups <- format_groups(groups)
   
   
   df_pm_mpi <- data.frame(Image = character(),stringsAsFactors=FALSE)
