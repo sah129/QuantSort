@@ -42,8 +42,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) 
 {
-    values <- reactiveValues()
-    
+
   
     output$csv_files <- renderDataTable({
         

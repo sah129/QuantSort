@@ -41,14 +41,13 @@ sort_table <- function(data, groups)
     }
   }
   
-  b<-c("#FBB4AE","#B3CDE3" )
-  if(length(groups)>= 3)
-    b<-brewer.pal(n = length(groups), name = "Pastel1")
-  else if(length(groups) == 1)
+
+  b<-c(brewer.pal(12,"Paired"), brewer.pal(8, "Dark2"), brewer.pal(8,"Accent"), brewer.pal(9, "Set1")) 
+  if(length(groups) == 1)
   {
     b<-b[1]
   }
-  else if(length(groups) == 2)
+  if(length(groups) == 2)
   {
     b<-c(b[1], b[2])
   }
@@ -74,8 +73,7 @@ get_graph <- function(res, groups, title)
   df <- t(df_pm_vac_ratio_grouped)
 
   
-  beforemelt <<- df
-  
+
   rownames(df) <- c()
   colnames(df) <- df[1,]
   df<-df[-1,]
