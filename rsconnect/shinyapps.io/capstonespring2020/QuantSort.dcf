@@ -1,0 +1,12 @@
+name: QuantSort
+title:
+username:
+account: capstonespring2020
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2708751
+bundleId: 3561859
+url: https://odonnelllab.shinyapps.io/QuantSort/
+when: 1598488954.23858
+asMultiple: FALSE
+asStatic: FALSE

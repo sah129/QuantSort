@@ -58,7 +58,11 @@ server <- function(input, output)
     observeEvent(input$group_files, {
       if(is.null(input$csv_file_input) || is.null(input$group_labels) || input$group_labels == "") 
           return(NULL)
+      grouping_errors <- analyze_groups(input$csv_file_input, input$group_labels)
+      if(length(grouping_errors) == 0)
         output$csv_files <- sort_table(input$csv_file_input, input$group_labels)
+      else
+        showModal(modalDialog(title = "Invalid Group", paste(grouping_errors, collapse = ", ")))
         
     })
     
@@ -67,7 +71,11 @@ server <- function(input, output)
          output$pm_vac_graph <- renderPlot({
              if(is.null(input$csv_file_input) || is.null(input$group_labels) || input$group_labels == "") 
                  return(NULL)
+           grouping_errors <- analyze_groups(input$csv_file_input, input$group_labels)
+           if(length(grouping_errors) == 0)
               get_graph(input$csv_file_input, input$group_labels, input$title)
+           else
+             showModal(modalDialog(title = "Invalid Group", paste(grouping_errors, collapse = ", ")))
              
          })
      })
@@ -75,7 +83,12 @@ server <- function(input, output)
     get_download_plot <- function(){
         if(is.null(input$csv_file_input) || is.null(input$group_labels) || input$group_labels == "") 
             return(NULL)
+      grouping_errors <- analyze_groups(input$csv_file_input, input$group_labels)
+      if(length(grouping_errors) == 0)
         get_graph(input$csv_file_input, input$group_labels, input$title)
+      else
+        showModal(modalDialog(title = "Invalid Group", paste(grouping_errors, collapse = ", ")))
+      
     }
 
     output$download_csvs <- downloadHandler(
@@ -88,26 +101,31 @@ server <- function(input, output)
             tmpdir <- tempdir()
             setwd(tempdir())
             
-            res<-  sort_data(input$csv_file_input, input$group_labels)
-            
-            fs<-c(fs, paste0(input$title," PM-mpi-all.csv"))
-            write.csv(res$pm_mpi, paste0(input$title," PM_mpi-all.csv"),  row.names = FALSE, na = "")
-            
-            fs<-c(fs, paste0(input$title, " vac-mpi-all.csv"))
-            write.csv(res$vac_mpi, paste0(input$title, " vac-mpi-all.csv"),  row.names = FALSE, na ="")
-            
-            fs<-c(fs, paste0(input$title," PM-vac-ratio-all.csv"))
-            write.csv(res$pm_vac, paste0(input$title," PM-vac-ratio-all.csv"),  row.names = FALSE,  na ="")
-            
-            fs<-c(fs, paste0(input$title, " PM-mpi-grouped.csv"))
-            write.csv(res$grouped_pm_mpi, paste0(input$title, " PM-mpi-grouped.csv"), row.names = FALSE, na ="")
-            
-            fs<-c(fs, paste0(input$title, " vac-mpi-grouped.csv"))
-            write.csv(res$grouped_vac_mpi, paste0(input$title, " vac-mpi-grouped.csv"),  row.names = FALSE, na ="")
-            
-            fs<-c(fs, paste0(input$title, " PM-vac-ratio-grouped.csv"))
-            write.csv(res$grouped_ratio, paste0(input$title, " PM-vac-ratio-grouped.csv"),  row.names = FALSE, na= "")
-            
+            grouping_errors <- analyze_groups(input$csv_file_input, input$group_labels)
+            if(length(grouping_errors) == 0)
+            {
+              res<-  sort_data(input$csv_file_input, input$group_labels)
+              
+              fs<-c(fs, paste0(input$title," PM-mpi-all.csv"))
+              write.csv(res$pm_mpi, paste0(input$title," PM_mpi-all.csv"),  row.names = FALSE, na = "")
+              
+              fs<-c(fs, paste0(input$title, " vac-mpi-all.csv"))
+              write.csv(res$vac_mpi, paste0(input$title, " vac-mpi-all.csv"),  row.names = FALSE, na ="")
+              
+              fs<-c(fs, paste0(input$title," PM-vac-ratio-all.csv"))
+              write.csv(res$pm_vac, paste0(input$title," PM-vac-ratio-all.csv"),  row.names = FALSE,  na ="")
+              
+              fs<-c(fs, paste0(input$title, " PM-mpi-grouped.csv"))
+              write.csv(res$grouped_pm_mpi, paste0(input$title, " PM-mpi-grouped.csv"), row.names = FALSE, na ="")
+              
+              fs<-c(fs, paste0(input$title, " vac-mpi-grouped.csv"))
+              write.csv(res$grouped_vac_mpi, paste0(input$title, " vac-mpi-grouped.csv"),  row.names = FALSE, na ="")
+              
+              fs<-c(fs, paste0(input$title, " PM-vac-ratio-grouped.csv"))
+              write.csv(res$grouped_ratio, paste0(input$title, " PM-vac-ratio-grouped.csv"),  row.names = FALSE, na= "")
+            }
+            else
+              showModal(modalDialog(title = "Invalid Group", paste(grouping_errors, collapse = ", ")))
             
             zip(zipfile=fname, files=fs)
         },

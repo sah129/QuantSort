@@ -19,6 +19,27 @@ format_groups <- function(group_list)
   return(group_list)
 }
 
+
+analyze_groups <- function(data, groups)
+{
+  data<- data["name"]
+  names(data) <- "Files"
+  data["Group"] = ""
+  
+  groups <- format_groups(groups)
+  
+  bad_groups <- list()
+
+  for(group in groups)
+  {
+    rows = which(grepl(group, data[,"Files"], fixed = TRUE))
+    if(length(rows) == 0)
+      bad_groups <- c(bad_groups, group)
+    
+  }
+  
+  return(bad_groups)
+}
 sort_table <- function(data, groups)
 {
 
