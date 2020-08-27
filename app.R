@@ -91,7 +91,7 @@ server <- function(input, output)
             res<-  sort_data(input$csv_file_input, input$group_labels)
             
             fs<-c(fs, paste0(input$title," PM-mpi-all.csv"))
-            write.csv(res$pm_mpi, paste0(input$title," PM_mpi-all.csv"),  row.names = FALSE, na = "")
+            write.csv(res$pm_mpi, paste0(input$title," PM-mpi-all.csv"),  row.names = FALSE, na = "")
             
             fs<-c(fs, paste0(input$title, " vac-mpi-all.csv"))
             write.csv(res$vac_mpi, paste0(input$title, " vac-mpi-all.csv"),  row.names = FALSE, na ="")
