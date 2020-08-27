@@ -34,7 +34,11 @@ ui <- fluidPage(
         bsModal("show_graph", "PM/vac Ratio", "generate_graph", size = "large",plotOutput("pm_vac_graph"),downloadButton('download_graph', 'Download'))
     )
 
-    )
+    ),
+    br(),
+    br(),
+    fluidRow(column(12, h5("Created by Sarah Hawbaker for the O'Donnell Lab at University of Pittsburgh, 2020."), align = "center"))
+    
 
 )
 
