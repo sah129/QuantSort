@@ -1,6 +1,6 @@
 # QuantSort
 
-![QuantSort home screen](../assets/qs-grouping.png)
+![QuantSort home screen](../assets/qs-grouping2.png)
 
 ## Overview
 
