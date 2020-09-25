@@ -8,4 +8,4 @@ Applet to group, sort, and auto-generate graphs for data from the CellQuant auto
 
 ## How to Run
 
-Included as part of the [bundled release](https://github.com/sah129/CellQuant/releases/tag/v0.8-alpha) of the CellQuant program.
+Included as part of the [bundled release](https://github.com/sah129/CellQuant/releases/) of the CellQuant program.
